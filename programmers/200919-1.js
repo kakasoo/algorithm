@@ -1,4 +1,4 @@
-// 프로그래머스 level1 두 개 뽑아서 더하기
+// 프로그래머스 level2 두 개 뽑아서 더하기
 function solution(numbers) {
     let answer = [];
     numbers.map((el1, i) => {
