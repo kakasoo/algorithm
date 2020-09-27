@@ -21,7 +21,7 @@ function solution(progresses, speeds) {
     let arr = [];
     progresses.map((program, i) => { arr.push(Math.ceil((100 - program) / speeds[i])) });
 
-    let count = 0;
+    let count = 0;  
     arr.map((el,i) => { (el > arr[i+1]) ? arr[i+1] = el : count = 0 });
    
     answer = split(arr);
