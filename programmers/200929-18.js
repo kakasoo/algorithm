@@ -1,3 +1,4 @@
+// // 프로그래머스 레벨 1 2019 KAKAO BLIND RECRUITMENT > [1차]비밀지도를 풀었습니다.
 const numPad = (n, number) => {
   while (String(number).length < n) {
     number = "0" + number;
