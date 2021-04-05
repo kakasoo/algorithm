@@ -28,7 +28,7 @@ const main = () => {
     const T = [0];
     const P = [0];
 
-    input.forEach((el, i) => {
+    input.forEach((el) => {
         numbers = el.split(" ").map(Number);
         const day = numbers[0];
         const price = numbers[1];
@@ -38,13 +38,12 @@ const main = () => {
     });
 
     const DP = new Array(T.length).fill(0);
-    DP[1] = P[1];
 
-    for (let i = 2; i < DP.length; i++) {
+    for (let i = 1; i < DP.length; i++) {
         DP[i] = P[i];
 
         if (i + T[i] - 1 > count) {
-            DP[i] = 0;
+            DP[i] = DP[i - 1];
             continue;
         }
 
