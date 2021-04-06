@@ -1,3 +1,4 @@
+// 백준 1259번 펠린드롬 수를 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

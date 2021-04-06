@@ -1,3 +1,4 @@
+// 백준 2133번 타일 채우기를 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

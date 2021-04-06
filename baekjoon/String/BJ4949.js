@@ -1,3 +1,4 @@
+// 백준 4949번 균형잡힌 세상을 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

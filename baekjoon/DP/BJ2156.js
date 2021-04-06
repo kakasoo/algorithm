@@ -1,3 +1,4 @@
+// 백준 2156번 포도주 시식을 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

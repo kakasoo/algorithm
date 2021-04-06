@@ -1,3 +1,4 @@
+// 백준 9375번 패션왕 신해빈을 풀었습니다.
 const readline = require("readline");
 
 rl = readline.createInterface({

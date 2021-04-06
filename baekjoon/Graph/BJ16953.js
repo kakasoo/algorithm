@@ -1,3 +1,4 @@
+// 백준 16953번 A->B를 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

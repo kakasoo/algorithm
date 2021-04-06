@@ -1,3 +1,4 @@
+// 백준 1541번 잃어버린 괄호를 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

@@ -1,3 +1,4 @@
+// 백준 2475번 검증수를 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

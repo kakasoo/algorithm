@@ -1,3 +1,4 @@
+// 백준 9184번 신나는 함수 실행을 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

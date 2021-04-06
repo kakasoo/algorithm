@@ -1,3 +1,4 @@
+// 백준 12865번 평범한 배낭을 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

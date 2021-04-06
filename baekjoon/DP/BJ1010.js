@@ -1,3 +1,4 @@
+// 백준 1010번 다리놓기를 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({

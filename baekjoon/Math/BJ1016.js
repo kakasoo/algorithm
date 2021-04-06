@@ -1,3 +1,4 @@
+// 백준 1016번 제곱 ㄴㄴ수를 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({
