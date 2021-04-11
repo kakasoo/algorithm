@@ -1,3 +1,4 @@
+// 백준 10093번 숫자를 풀었습니다.
 const readline = require("readline");
 
 const rl = readline.createInterface({
