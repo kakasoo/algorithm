@@ -1,4 +1,8 @@
+// 나중에 다시 풀어보도록 하자.
 // 시간초과와 메모리 문제로 풀 수가 없다, 백준에서 업데이트 예정이라 하니 나중에 다시 해보자.
+
+// 백준 2529번 부등호를 풀었습니다.
+// 백트래킹을 이용하여 풀었습니다. (순열로는 경우의 수가 너무 많다. )
 
 const readline = require("readline");
 
@@ -7,87 +11,57 @@ const rl = readline.createInterface({
     output: process.stdout,
 });
 
-const getPermutations = function* (elements) {
-    if (elements.length === 1) {
-        yield elements;
-    } else {
-        let [first, ...rest] = elements;
-        for (const perm of getPermutations(rest)) {
-            for (let i = 0; i < elements.length; i++) {
-                const start = perm.slice(0, i);
-                const rest = perm.slice(i);
-                yield [...start, first, ...rest];
-            }
-        }
-    }
-};
-
-const getCombinations = function* (elements, length) {
-    for (let i = 0; i < elements.length; i++) {
-        if (length === 1) {
-            yield [elements[i]];
-        } else {
-            let remaining = getCombinations(
-                elements.slice(i + 1, elements.length),
-                length - 1
-            );
-            for (let next of remaining) {
-                yield [elements[i], ...next];
-            }
-        }
-    }
-};
-
 const input = [];
 
 rl.on("line", (line) => {
     input.push(line);
+}).on("close", () => {
+    const num = Number(input.splice(0, 1)) + 1;
+    const expression = input[0].split(" ");
+    const numbers = new Array(10).fill(0).map((el, i) => i);
+    const visited = new Array(10).fill(false);
 
-    if (input.length === 2) {
-        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-        const length = input[1].split(" ").length + 1;
-
-        let maxValue = -9999999999;
-        let minValue = 9999999999;
-
-        const passedPerm = [];
-        for (const combination of getCombinations(numbers, length)) {
-            loop1: for (const permutation of getPermutations(combination)) {
-                let result = "";
-                for (let j = 0; j < permutation.length - 1; j++) {
-                    result += permutation[j];
-                    result += input[1].split(" ")[j];
-                }
-                result += permutation[permutation.length - 1];
-
-                for (let i = 0; i <= result.length - 2; i += 2) {
-                    const first = result[i];
-                    const expression = result[i + 1];
-                    const second = result[i + 2];
-
-                    if (
-                        !new Function(`return ${first}${expression}${second}`)()
-                    ) {
-                        continue loop1;
-                    }
-                }
-
-                passedPerm.push(permutation);
-            }
+    const answer = [];
+    const dfs = (arr = []) => {
+        if (arr.length === num) {
+            answer.push([...arr]);
+            return;
         }
 
-        const answers = passedPerm.map((el) => el.join(""));
-        maxValue = Math.max(maxValue, ...answers);
-        minValue = Math.min(minValue, ...answers);
-
-        const numPad = (str) => {
-            while (str.toString().length < length) {
-                str = "0" + str;
+        for (let i = 0; i < numbers.length; i++) {
+            const curNumber = numbers[i];
+            const lastIdx = arr.length - 1;
+            const express = expression[lastIdx];
+            if (!visited[i]) {
+                if (
+                    arr.length === 0 ||
+                    new Function(
+                        `return ${arr[lastIdx]}${express}${curNumber}`
+                    )()
+                ) {
+                    visited[i] = true;
+                    arr.push(curNumber);
+                    dfs(arr);
+                    arr.pop();
+                    visited[i] = false;
+                }
             }
-            return str;
-        };
+        }
+    };
+    dfs();
 
-        console.log(numPad(maxValue));
-        console.log(numPad(minValue));
-    }
+    const answerArr = answer.map((el) => Number(el.join("")));
+    const maxValue = Math.max(...answerArr);
+    const minValue = Math.min(...answerArr);
+
+    const numPad = (number) => {
+        let str = String(number);
+
+        while (str.length < num) {
+            str = "0" + str;
+        }
+        return str;
+    };
+    console.log(numPad(maxValue));
+    console.log(numPad(minValue));
 });
